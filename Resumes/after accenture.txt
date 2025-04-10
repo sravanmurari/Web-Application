@@ -1,0 +1,142 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Medium Length Professional CV
+% LaTeX Template
+% Version 2.0 (8/5/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Siddhesh dosi 
+%
+% Important note:
+% This template requires the resume.cls file to be in the same directory as the
+% .tex file. The resume.cls file provides the resume style used for structuring the
+% document.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{resume} % Use the custom resume.cls style
+
+\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry} % Document margins
+\usepackage{hyperref} % For hyperlinks
+\newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
+\newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
+\name{MURARI NAGA SRAVAN KUMAR} % Your name
+\address{Machilipatnam} % Your address
+
+% Address with phone, email, and LinkedIn profile
+\address{(+91)7782040677 \\ \href{mailto:sravanmurari04@gmail.com}{sravanmurari04@gmail.com} \\ \href{https://www.linkedin.com/in/sravan-murari-b87209253/}{LinkedIn Profile}} 
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Education}
+
+{\bf Lakireddy Bali Reddy College Of Engineering } \hfill {\em 2021 - Present} 
+\\ Bachelor of Technology\hfill {\em CGPA - 8.70}
+\\ Department of Artificial Intelligence \& Data Science\\
+
+\vspace{-1em} % Decrease space after the section
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	CAREER OBJECTIVE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Career Objective}
+
+Aspiring to apply my foundation in AI and Data Science to dynamic projects, solving real-world problems with machine learning and deep learning techniques. I am eager to further enhance my skills in Java, data structures, and algorithms.
+
+\vspace{-0.3em} % Increase space after the section
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	WORK/TRAINING EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Work/Training Experience}
+
+\begin{rSubsection}{Cognifyz Technologies}{2024}{Data Science Intern}{}
+\item Completed a minor project on restaurant rating prediction using machine learning, working with various algorithms and building a model to predict restaurant ratings based on a given dataset.
+\end{rSubsection}
+
+\vspace{-0.3em} % Decrease space after the section
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	PROJECTS SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Projects}
+
+{\bf Cardiac Prediction Using ML \& DL Approaches}
+\\Created predictive models for the early identification of cardiac arrest incidents using a comprehensive dataset of clinical parameters and patient histories.
+\vspace{0.5em} % Space between items
+
+{\bf High-Precision Color Identification in Images Using Deep Neural Networks}
+\\Designed and implemented a deep learning model with CNNs to predict the most intense color in images, achieving high accuracy through effective data preprocessing and model design.
+\vspace{0.5em} % Space between items
+
+{\bf Agriculture Machinery}
+\\Built a static website to display agriculture machinery with integrated login functionality, featuring a user-friendly interface to manage machinery information and demonstrating web development skills.
+
+\vspace{-0.3em} % Decrease space after the section
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	TECHNICAL STRENGTHS SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Technical Strengths}
+
+\begin{tabular}{ l l l }
+\textbullet \ Java & \textbullet \ Data Science & \textbullet \ HTML \\
+\textbullet \ Python & \textbullet \ Machine Learning & \textbullet \ CSS \\
+\textbullet \ C & \textbullet \ Data Structures \& Algorithms & \textbullet \ MS Office \\
+\end{tabular}
+
+\vspace{-0.3em} % Decrease space after the section
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	ACHIEVEMENTS & CERTIFICATIONS SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Achievements \& Certifications} \itemsep -3pt
+\vspace{-0.5em} % Decrease space before the items
+\item - Secured 3rd position in 24hrs Data Science Hackathon at LBRCE.
+\item - Completed the 'Joy of Computing' course through NPTEL, securing Elite+Silver status.
+\item - Earned certification in Internet of Things with Elite+Silver status via NPTEL.
+\item - Completed a virtual internship in Cybersecurity Essentials at Cisco Netacad.
+\item - Completed a Machine Learning Foundation Achievement Certification from Infosys Springboard.
+
+\vspace{-0.7em} % Decrease space after the section
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%	EXTRA-CURRICULAR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Extra-Curricular} \itemsep -3pt
+\item - Worked as an IEEE Conference Volunteer.
+\item - Worked as Lakshya 2K24 Coordinator in LBRCE.
+
+\vspace{-1em} % Decrease space after the section
+
+\end{rSection}
+
+\end{document}
