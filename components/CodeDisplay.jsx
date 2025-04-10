@@ -1,78 +1,77 @@
-import React from 'react';
-import CopyButton from './CopyButton';
+import React, { useState } from 'react';
 
 const codeSnippets = {
-  'Singly Linked List': {
-    Python: `class Node:\n  def __init__(self, data):\n    self.data = data\n    self.next = None\n\nclass SinglyLinkedList:\n  def __init__(self):\n    self.head = None\n\n  def append(self, data):\n    new_node = Node(data)\n    if not self.head:\n      self.head = new_node\n      return\n    temp = self.head\n    while temp.next:\n      temp = temp.next\n    temp.next = new_node`,
-    Java: `class Node {\n  int data;\n  Node next;\n  Node(int d) { data = d; next = null; }\n}\n\nclass SinglyLinkedList {\n  Node head;\n  void append(int data) {\n    Node newNode = new Node(data);\n    if (head == null) { head = newNode; return; }\n    Node temp = head;\n    while (temp.next != null) temp = temp.next;\n    temp.next = newNode;\n  }\n}`,
-    C: `struct Node {\n  int data;\n  struct Node* next;\n};\n\nvoid append(struct Node** head_ref, int data) {\n  struct Node* new_node = malloc(sizeof(struct Node));\n  new_node->data = data;\n  new_node->next = NULL;\n  if (*head_ref == NULL) {\n    *head_ref = new_node;\n    return;\n  }\n  struct Node* temp = *head_ref;\n  while (temp->next != NULL) temp = temp->next;\n  temp->next = new_node;\n}`
+  'Linear Search': {
+    Python: `def linear_search(arr, key):\n  for i, val in enumerate(arr):\n    if val == key:\n      return i\n  return -1`,
+    Java: `int linearSearch(int[] arr, int key) {\n  for (int i = 0; i < arr.length; i++) {\n    if (arr[i] == key) return i;\n  }\n  return -1;\n}`,
+    C: `int linearSearch(int arr[], int n, int key) {\n  for (int i = 0; i < n; i++) {\n    if (arr[i] == key) return i;\n  }\n  return -1;\n}`
   },
-  'Doubly Linked List': {
-    Python: `class Node:\n  def __init__(self, data):\n    self.data = data\n    self.prev = None\n    self.next = None\n\nclass DoublyLinkedList:\n  def __init__(self):\n    self.head = None\n\n  def append(self, data):\n    new_node = Node(data)\n    if not self.head:\n      self.head = new_node\n      return\n    temp = self.head\n    while temp.next:\n      temp = temp.next\n    temp.next = new_node\n    new_node.prev = temp`,
-    Java: `class Node {\n  int data;\n  Node prev, next;\n  Node(int d) { data = d; prev = next = null; }\n}\n\nclass DoublyLinkedList {\n  Node head;\n  void append(int data) {\n    Node newNode = new Node(data);\n    if (head == null) { head = newNode; return; }\n    Node temp = head;\n    while (temp.next != null) temp = temp.next;\n    temp.next = newNode;\n    newNode.prev = temp;\n  }\n}`,
-    C: `struct Node {\n  int data;\n  struct Node *prev, *next;\n};\n\nvoid append(struct Node** head_ref, int data) {\n  struct Node* new_node = malloc(sizeof(struct Node));\n  new_node->data = data;\n  new_node->next = NULL;\n  new_node->prev = NULL;\n  if (*head_ref == NULL) {\n    *head_ref = new_node;\n    return;\n  }\n  struct Node* temp = *head_ref;\n  while (temp->next != NULL) temp = temp->next;\n  temp.next = new_node;\n  new_node.prev = temp;\n}`
+  'Binary Search': {
+    Python: `def binary_search(arr, key):\n  l, r = 0, len(arr) - 1\n  while l <= r:\n    mid = (l + r) // 2\n    if arr[mid] == key:\n      return mid\n    elif arr[mid] < key:\n      l = mid + 1\n    else:\n      r = mid - 1\n  return -1`,
+    Java: `int binarySearch(int[] arr, int key) {\n  int l = 0, r = arr.length - 1;\n  while (l <= r) {\n    int mid = (l + r) / 2;\n    if (arr[mid] == key) return mid;\n    else if (arr[mid] < key) l = mid + 1;\n    else r = mid - 1;\n  }\n  return -1;\n}`,
+    C: `int binarySearch(int arr[], int n, int key) {\n  int l = 0, r = n - 1;\n  while (l <= r) {\n    int mid = (l + r) / 2;\n    if (arr[mid] == key) return mid;\n    else if (arr[mid] < key) l = mid + 1;\n    else r = mid - 1;\n  }\n  return -1;\n}`
   },
-  'Circular Linked List': {
-  Python: `class Node:\n  def __init__(self, data):\n    self.data = data\n    self.next = None\n\nclass CircularLinkedList:\n  def __init__(self):\n    self.head = None\n\n  def append(self, data):\n    new_node = Node(data)\n    if not self.head:\n      self.head = new_node\n      new_node.next = new_node\n    else:\n      temp = self.head\n      while temp.next != self.head:\n        temp = temp.next\n      temp.next = new_node\n      new_node.next = self.head`,
-  Java: `class Node {\n  int data;\n  Node next;\n  Node(int data) {\n    this.data = data;\n    this.next = null;\n  }\n}\n\nclass CircularLinkedList {\n  Node head = null;\n\n  void append(int data) {\n    Node newNode = new Node(data);\n    if (head == null) {\n      head = newNode;\n      newNode.next = head;\n    } else {\n      Node temp = head;\n      while (temp.next != head) {\n        temp = temp.next;\n      }\n      temp.next = newNode;\n      newNode.next = head;\n    }\n  }\n}`,
-  C: `#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node {\n  int data;\n  struct Node* next;\n};\n\nvoid append(struct Node** head_ref, int data) {\n  struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));\n  new_node->data = data;\n  if (*head_ref == NULL) {\n    *head_ref = new_node;\n    new_node->next = new_node;\n  } else {\n    struct Node* temp = *head_ref;\n    while (temp->next != *head_ref) {\n      temp = temp->next;\n    }\n    temp->next = new_node;\n    new_node->next = *head_ref;\n  }\n}`
+  'Jump Search': {
+    Python: `import math\ndef jump_search(arr, key):\n  n = len(arr)\n  step = int(math.sqrt(n))\n  prev = 0\n  while arr[min(step, n) - 1] < key:\n    prev = step\n    step += int(math.sqrt(n))\n    if prev >= n:\n      return -1\n  for i in range(prev, min(step, n)):\n    if arr[i] == key:\n      return i\n  return -1`,
+    Java: `int jumpSearch(int[] arr, int key) {\n  int n = arr.length;\n  int step = (int)Math.floor(Math.sqrt(n));\n  int prev = 0;\n  while (arr[Math.min(step, n)-1] < key) {\n    prev = step;\n    step += (int)Math.floor(Math.sqrt(n));\n    if (prev >= n) return -1;\n  }\n  for (int i = prev; i < Math.min(step, n); i++)\n    if (arr[i] == key) return i;\n  return -1;\n}`,
+    C: `int jumpSearch(int arr[], int n, int key) {\n  int step = sqrt(n);\n  int prev = 0;\n  while (arr[min(step, n)-1] < key) {\n    prev = step;\n    step += sqrt(n);\n    if (prev >= n) return -1;\n  }\n  for (int i = prev; i < min(step, n); i++)\n    if (arr[i] == key) return i;\n  return -1;\n}`
+  },
+  'Interpolation Search': {
+    Python: `def interpolation_search(arr, key):\n  low = 0\n  high = len(arr) - 1\n  while low <= high and key >= arr[low] and key <= arr[high]:\n    pos = low + ((high - low) * (key - arr[low])) // (arr[high] - arr[low])\n    if arr[pos] == key:\n      return pos\n    if arr[pos] < key:\n      low = pos + 1\n    else:\n      high = pos - 1\n  return -1`,
+    Java: `int interpolationSearch(int[] arr, int key) {\n  int low = 0, high = arr.length - 1;\n  while (low <= high && key >= arr[low] && key <= arr[high]) {\n    int pos = low + ((high - low) * (key - arr[low])) / (arr[high] - arr[low]);\n    if (arr[pos] == key) return pos;\n    if (arr[pos] < key) low = pos + 1;\n    else high = pos - 1;\n  }\n  return -1;\n}`,
+    C: `int interpolationSearch(int arr[], int n, int key) {\n  int low = 0, high = n - 1;\n  while (low <= high && key >= arr[low] && key <= arr[high]) {\n    int pos = low + ((double)(high - low) / (arr[high] - arr[low])) * (key - arr[low]);\n    if (arr[pos] == key) return pos;\n    if (arr[pos] < key) low = pos + 1;\n    else high = pos - 1;\n  }\n  return -1;\n}`
   }
 };
 
-const timeComplexities = [
-  { operation: 'Insert at Head', best: 'O(1)', avg: 'O(1)', worst: 'O(1)' },
-  { operation: 'Insert at Tail', best: 'O(1)*', avg: 'O(n)', worst: 'O(n)' },
-  { operation: 'Insert at Position', best: 'O(1)', avg: 'O(n)', worst: 'O(n)' },
-  { operation: 'Delete at Position', best: 'O(1)', avg: 'O(n)', worst: 'O(n)' },
-  { operation: 'Search', best: 'O(1)', avg: 'O(n)', worst: 'O(n)' },
-  { operation: 'Traverse', best: 'O(1)', avg: 'O(n)', worst: 'O(n)' },
-];
+const timeComplexities = {
+  'Linear Search': { best: 'O(1)', average: 'O(n)', worst: 'O(n)' },
+  'Binary Search': { best: 'O(1)', average: 'O(log n)', worst: 'O(log n)' },
+  'Jump Search': { best: 'O(1)', average: 'O(√n)', worst: 'O(√n)' },
+  'Interpolation Search': { best: 'O(1)', average: 'O(log log n)', worst: 'O(n)' }
+};
 
-const CodeDisplay = ({ type }) => {
-  const snippets = codeSnippets[type];
+const CodeDisplay = ({ algorithm }) => {
+  const [copiedLang, setCopiedLang] = useState('');
+
+  const handleCopy = async (code, lang) => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopiedLang(lang);
+      setTimeout(() => setCopiedLang(''), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
 
   return (
-    <div className="bg-white p-4 rounded shadow-md space-y-6">
-      <h3 className="font-semibold mb-3">💻 {type} Code</h3>
+    <div className="bg-white p-4 rounded shadow-md">
+      <h3 className="font-semibold mb-2 text-lg">💻 {algorithm} Code</h3>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-        {snippets &&
-          Object.entries(snippets).map(([lang, code]) => (
-            <div key={lang} className="relative">
+        {Object.entries(codeSnippets[algorithm]).map(([lang, code]) => (
+          <div key={lang} className="relative">
+            <div className="flex items-center justify-between mb-1">
               <strong>{lang}</strong>
-              <CopyButton text={code} className="absolute top-0 right-0" />
-              <pre className="bg-gray-100 p-2 rounded mt-1 whitespace-pre-wrap">
-                {code}
-              </pre>
+              <button
+                onClick={() => handleCopy(code, lang)}
+                className="text-xs bg-blue-100 hover:bg-blue-200 text-blue-600 px-2 py-1 rounded"
+              >
+                {copiedLang === lang ? 'Copied!' : 'Copy'}
+              </button>
             </div>
-          ))}
+            <pre className="bg-gray-100 p-2 rounded whitespace-pre-wrap h-48 overflow-y-auto">
+              {code}
+            </pre>
+          </div>
+        ))}
       </div>
 
-      {/* Time Complexity Table */}
-      <div>
-        <h4 className="font-semibold mt-6 mb-2">⏱ Time Complexities</h4>
-        <div className="overflow-auto">
-          <table className="min-w-full text-sm text-left border border-gray-300">
-            <thead className="bg-gray-200">
-              <tr>
-                <th className="px-3 py-1 border">Operation</th>
-                <th className="px-3 py-1 border">Best</th>
-                <th className="px-3 py-1 border">Average</th>
-                <th className="px-3 py-1 border">Worst</th>
-              </tr>
-            </thead>
-            <tbody>
-              {timeComplexities.map((row) => (
-                <tr key={row.operation} className="border-t">
-                  <td className="px-3 py-1 border">{row.operation}</td>
-                  <td className="px-3 py-1 border">{row.best}</td>
-                  <td className="px-3 py-1 border">{row.avg}</td>
-                  <td className="px-3 py-1 border">{row.worst}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p className="text-xs mt-1 text-gray-500">*O(1) if tail pointer is maintained</p>
-        </div>
+      <div className="mt-4 text-sm">
+        <h4 className="font-semibold">⏱ Time Complexities</h4>
+        <ul className="list-disc ml-5">
+          <li><strong>Best Case:</strong> {timeComplexities[algorithm].best}</li>
+          <li><strong>Average Case:</strong> {timeComplexities[algorithm].average}</li>
+          <li><strong>Worst Case:</strong> {timeComplexities[algorithm].worst}</li>
+        </ul>
       </div>
     </div>
   );
