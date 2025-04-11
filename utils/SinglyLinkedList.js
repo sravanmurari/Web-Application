@@ -5,7 +5,6 @@ export class SinglyLinkedListNode {
       this.address = Math.random().toString(16).substr(2, 6);
     }
   }
-  
   export class SinglyLinkedList {
     constructor() {
       this.head = null;
